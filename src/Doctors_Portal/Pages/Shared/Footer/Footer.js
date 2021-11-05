@@ -1,10 +1,12 @@
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 
 const Footer = () => {
   return (
-    <div style={{ marginTop: "300px" }}>
-      <p>I AM Footer</p>
-    </div>
+    <Box style={{ marginTop: "300px", textAlign: "center" }}>
+      <Typography variant="caption">I AM FOOTER</Typography>
+    </Box>
   );
 };
 

@@ -7,12 +7,13 @@ import HomeContainer from "./Doctors_Portal/Pages/Home/HomeContainer/HomeContain
 import NotFound from "./Doctors_Portal/Pages/NotFound/NotFound";
 import Services from "./Doctors_Portal/Pages/Services/Services";
 import Footer from "./Doctors_Portal/Pages/Shared/Footer/Footer";
+import NavBaar from "./Doctors_Portal/Pages/Shared/NavBaar/NavBaar";
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Router>
-        {/* <NavBaar /> */}
+        <NavBaar />
         <Switch>
           <Route exact path="/">
             <HomeContainer />
