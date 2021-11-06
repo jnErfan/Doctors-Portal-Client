@@ -60,8 +60,10 @@
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=coderDaiyan&show_icons=true&theme=cobalt&title_color=3cb480&locale=en" alt="coderdaiyan" /></p>
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=jnErfan&show_icons=true&theme=cobalt&title_color=3cb480&locale=en" alt="jnErfan" /></p>
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=coderDaiyan&show_icons=true&theme=cobalt&title_color=3cb480&locale=en&layout=compact" alt="coderdaiyan" /></p> <br>
-
-![GitHub streak stats](https://github-readme-streak-stats.herokuapp.com/?user=coderDaiyan)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=jnErfan&show_icons=true&theme=cobalt&title_color=3cb480&locale=en&layout=compact" alt="jnErfan" /></p> 
+<br>
+<br>
+<br/>
+![GitHub streak stats](https://github-readme-streak-stats.herokuapp.com/?user=jnErfan)
