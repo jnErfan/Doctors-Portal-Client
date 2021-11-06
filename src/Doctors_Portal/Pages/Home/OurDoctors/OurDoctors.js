@@ -3,8 +3,11 @@ import { Box } from "@mui/system";
 import React from "react";
 import { doctors } from "../../../Data/Data";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { GradientButton } from "../MUiStyled/GradientButton";
+import { useHistory } from "react-router";
 
 const OurDoctors = () => {
+  const history = useHistory();
   return (
     <Container sx={{ marginTop: "100px" }}>
       <Box>
@@ -75,6 +78,14 @@ const OurDoctors = () => {
             </Grid>
           ))}
         </Grid>
+      </Box>
+      <Box sx={{ mt: "150px", display: "flex", justifyContent: "center" }}>
+        <GradientButton
+          onClick={() => history.push("/contract")}
+          variant="contained"
+        >
+          CONTRACT US
+        </GradientButton>
       </Box>
     </Container>
   );

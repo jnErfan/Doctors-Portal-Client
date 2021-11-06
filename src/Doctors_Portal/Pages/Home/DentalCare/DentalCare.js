@@ -39,6 +39,7 @@ const DentalCare = () => {
                 color: "#fff",
                 padding: "17px 44px",
                 marginBottom: 5,
+                fontWeight: "bold",
               }}
             >
               Learn More

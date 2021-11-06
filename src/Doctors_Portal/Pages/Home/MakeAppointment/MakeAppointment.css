@@ -1,0 +1,10 @@
+@media only screen and (max-width: 600px) {
+  .doctor {
+    display: none;
+  }
+  .textAll {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

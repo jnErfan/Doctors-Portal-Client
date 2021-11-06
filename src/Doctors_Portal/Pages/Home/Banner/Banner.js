@@ -3,8 +3,10 @@ import { Box } from "@mui/system";
 import React from "react";
 import "./Banner.css";
 import Chair from "./../../../Images/chair.png";
+import { useHistory } from "react-router";
 
 const Banner = () => {
+  const history = useHistory();
   const style = {
     display: "flex",
     alignItems: "center",
@@ -27,11 +29,13 @@ const Banner = () => {
               totam consectetur expedita dolorum.
             </Typography>
             <Button
+              onClick={() => history.push("/appointment")}
               sx={{
                 background: "linear-gradient(90deg,#19D3AE,#0FCFEC)",
                 color: "#fff",
                 padding: "17px 44px",
                 marginBottom: 5,
+                fontWeight: "bold",
               }}
             >
               Get Appointment

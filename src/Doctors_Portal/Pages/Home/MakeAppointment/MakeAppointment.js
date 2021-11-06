@@ -1,41 +1,47 @@
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import doctor from "../../../Images/doctor.png";
 import appointment from "../../../Images/appointment-bg.png";
+import "./MakeAppointment.css";
 
 const MakeAppointment = () => {
   return (
     <Box
-      sx={{
+      style={{
         background: `url(${appointment})`,
+        backgroundColor: "#1a1d27",
         backgroundSize: "130%",
+        backgroundBlendMode: "overlay",
+        position: "static",
+        marginBottom: 200,
+        marginTop: 200,
+        padding: "50px",
       }}
     >
-      <Box
+      <Grid
+        container
+        spacing={2}
         style={{
-          background: "#3A4256",
-          opacity: 0.8529411764705882,
-          position: "static",
-          height: "80vh",
-          marginBottom: 200,
-          marginTop: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Grid
-          container
-          spacing={2}
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <Grid xs={6} md={6} lg={5}>
-            <img
-              style={{ marginTop: "-182px" }}
-              width="120%"
-              src={doctor}
-              alt=""
-            />
-          </Grid>
-          <Grid xs={6} md={6} lg={7}>
+        <Grid xs={6} md={6} lg={5}>
+          <img
+            style={{
+              position: "absolute",
+              marginTop: "-319px",
+            }}
+            width="40%"
+            src={doctor}
+            className="doctor"
+            alt=""
+          />
+        </Grid>
+        <Grid xs={6} md={6} lg={7} className="textAll">
+          <Box>
             <Typography
               variant="body2"
               sx={{ fontWeight: "bold", color: "#6ACECE", marginTop: "0" }}
@@ -53,8 +59,10 @@ const MakeAppointment = () => {
               sx={{ marginTop: "30px", color: "#fff" }}
             >
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Temporibus accusantium ad tempore ex ab corrupti? Suscipit facere
-              corrupti necessitatibus ratione impedit
+              Temporibus <br />
+              accusantium ad tempore ex ab corrupti? Suscipit facere corrupti{" "}
+              <br />
+              necessitatibus ratione impedit
             </Typography>
             <Button
               sx={{
@@ -62,13 +70,14 @@ const MakeAppointment = () => {
                 color: "#fff",
                 padding: "10px 44px",
                 marginTop: "50px",
+                fontWeight: "bold",
               }}
             >
               Learn More
             </Button>
-          </Grid>
+          </Box>
         </Grid>
-      </Box>
+      </Grid>
     </Box>
   );
 };

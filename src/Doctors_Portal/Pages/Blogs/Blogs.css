@@ -1,0 +1,23 @@
+.main_header {
+  background: linear-gradient(0deg, #2d343696, #636e72a4), url("./erfan.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 600px;
+  position: relative;
+}
+/* .main_header {
+  background: linear-gradient(0deg, #2d343696, #636e72a4),
+    url("https://i.ibb.co/xhtdsYz/React-App.png");
+  background-size: cover;
+  background-attachment: fixed;
+  height: 600px;
+  position: relative;
+} */
+.erfan {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}
