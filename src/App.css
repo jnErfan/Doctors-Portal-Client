@@ -23,9 +23,6 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 /* 
-User Login Information Saved Database
-Upsert User Login Information
-Nested Routing 
 Make Admin
 Admin Route 
 Jwt Verify Add Admin 

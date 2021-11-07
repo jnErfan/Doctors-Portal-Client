@@ -28,11 +28,12 @@ const useFirebase = () => {
     image
   ) => {
     setIsLoading(true);
+    setError("");
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const redirect = location?.state?.from || "/";
         setUser(result?.user);
-        console.log(result?.user);
+        savedUserInfo(name, email, "POST");
         history.push(redirect);
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -48,11 +49,13 @@ const useFirebase = () => {
   };
 
   const emailPasswordLogin = (email, password, history, location) => {
+    setError("");
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const redirect = location?.state?.from || "/";
         setUser(result?.user);
+
         console.log(result?.user);
         history.push(redirect);
       })
@@ -62,10 +65,12 @@ const useFirebase = () => {
       .finally(() => setIsLoading(false));
   };
   const googleSignIn = (history, location) => {
+    setError("");
     setIsLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result?.user);
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         console.log(result?.user);
         history.push(redirect);
@@ -74,6 +79,18 @@ const useFirebase = () => {
         setError(error.message);
       })
       .finally(() => setIsLoading(false));
+  };
+  const savedUserInfo = (name, email, method) => {
+    const date = new Date();
+    const user = { name, email, date };
+    console.log(user);
+    fetch("http://localhost:5000/user", {
+      method: method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
   };
   const logOutAll = () => {
     signOut(auth)
@@ -99,6 +116,7 @@ const useFirebase = () => {
   return {
     user,
     error,
+    setError,
     emailPasswordSignUp,
     emailPasswordLogin,
     googleSignIn,

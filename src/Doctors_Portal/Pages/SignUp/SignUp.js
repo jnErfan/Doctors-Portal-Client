@@ -55,18 +55,24 @@ const SignUp = () => {
   };
   const history = useHistory();
   const location = useLocation();
-  const { error, emailPasswordSignUp, googleSignIn } = useAuth();
+  const { error, setError, emailPasswordSignUp, googleSignIn } = useAuth();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const fullName = data.fastName + " " + data.lastName;
-    emailPasswordSignUp(
-      data.email,
-      data.password,
-      history,
-      location,
-      fullName,
-      data.image
-    );
+    if (data.password === data.password2) {
+      setError("");
+      emailPasswordSignUp(
+        data.email,
+        data.password,
+        history,
+        location,
+        fullName,
+        data.image
+      );
+    } else {
+      const passwordError = "Password Did't Matched";
+      setError(passwordError);
+    }
   };
 
   const handleGoogleSignIn = () => {

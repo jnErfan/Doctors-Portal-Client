@@ -27,6 +27,10 @@ import { Logout } from "@mui/icons-material";
 import useAuth from "../../Hooks/useAuth";
 import ManageAppointments from "../ManageAppointments/ManageAppointments";
 import Blogs from "../Blogs/Blogs";
+import Patients from "../Patients/Patients";
+import Setting from "../Setting/Setting";
+import Prescriptions from "../Prescriptions/Prescriptions";
+import BookIcon from "@mui/icons-material/Book";
 
 const drawerWidth = 150;
 
@@ -168,7 +172,7 @@ const Dashboard = () => {
             </ListItem>
             <ListItem button>
               <NavLink
-                to={`${url}/blog`}
+                to={`${url}/patients`}
                 style={{
                   textDecoration: "none",
                   color: "#fff",
@@ -180,7 +184,7 @@ const Dashboard = () => {
             </ListItem>
             <ListItem button>
               <NavLink
-                to={`${url}/manageAppointments`}
+                to={`${url}/prescription`}
                 style={{
                   textDecoration: "none",
                   color: "#fff",
@@ -192,14 +196,26 @@ const Dashboard = () => {
             </ListItem>
             <ListItem button>
               <NavLink
-                to={`${url}/manageAppointments`}
+                to={`${url}/setting`}
                 style={{
                   textDecoration: "none",
                   color: "#fff",
                   marginTop: "20px",
                 }}
               >
-                <SettingsIcon sx={{ display: "block" }} /> SETTING
+                <SettingsIcon sx={{ display: "block" }} /> Setting
+              </NavLink>
+            </ListItem>
+            <ListItem button>
+              <NavLink
+                to={`${url}/blogs`}
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  marginTop: "20px",
+                }}
+              >
+                <BookIcon sx={{ display: "block" }} /> Blogs
               </NavLink>
             </ListItem>
           </List>
@@ -214,6 +230,18 @@ const Dashboard = () => {
             <ManageAppointments />
           </Route>
           <Route path={`${path}/blog`}>
+            <Blogs />
+          </Route>
+          <Route path={`${path}/patients`}>
+            <Patients />
+          </Route>
+          <Route path={`${path}/prescription`}>
+            <Prescriptions />
+          </Route>
+          <Route path={`${path}/setting`}>
+            <Setting />
+          </Route>
+          <Route path={`${path}/blogs`}>
             <Blogs />
           </Route>
         </Switch>

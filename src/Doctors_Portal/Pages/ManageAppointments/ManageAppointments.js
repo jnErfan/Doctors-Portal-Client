@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Toolbar, Grid, Typography, Box } from "@mui/material";
 import Calendar from "../Calender/Calendar";
 import TableComponent from "../Table/Table";
 
 const ManageAppointments = () => {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = useState(new Date());
+  const [appointments, setAppointments] = useState([]);
+  const [update, setUpdate] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:5000/appointment?date=${date?.toDateString()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAppointments(data);
+        setUpdate(data);
+      });
+  }, [date, update]);
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <Toolbar />
@@ -40,7 +50,7 @@ const ManageAppointments = () => {
             {" "}
             {date.toDateString()}
           </Typography>
-          <TableComponent />
+          <TableComponent appointments={appointments} />
         </Grid>
       </Grid>
     </Box>

@@ -6,6 +6,9 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import { Container, TextField } from "@mui/material";
 import { GradientButton } from "../../Home/MUiStyled/GradientButton";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import useAuth from "../../../Hooks/useAuth";
 
 const style = {
   position: "absolute",
@@ -18,8 +21,19 @@ const style = {
   width: "70%",
   borderRadius: "20px",
 };
-
 const ModalForm = ({ open, handleClose, name, time, date }) => {
+  const { register, handleSubmit, reset } = useForm();
+  const { user } = useAuth();
+  const onSubmit = (data) => {
+    data.serviceName = name;
+    axios.post("http://localhost:5000/appointment", data).then((result) => {
+      console.log(result);
+      if (result.data.insertedId) {
+        alert("Successful");
+        reset();
+      }
+    });
+  };
   return (
     <Box>
       <Modal
@@ -47,16 +61,8 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
             >
               {name}
             </Typography>
-            <form onSubmit={handleClose}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Container maxWidth="sm">
-                <TextField
-                  fullWidth
-                  id="outlined-basic"
-                  variant="outlined"
-                  value={time}
-                  disabled
-                  sx={{ my: "10px" }}
-                />
                 <TextField
                   fullWidth
                   id="outlined-basic"
@@ -64,7 +70,9 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
                   variant="outlined"
                   sx={{ my: "10px" }}
                   type="name"
+                  defaultValue={user.displayName}
                   required
+                  {...register("name")}
                 />
                 <TextField
                   fullWidth
@@ -73,7 +81,9 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
                   variant="outlined"
                   sx={{ my: "10px" }}
                   type="email"
+                  value={user.email}
                   required
+                  {...register("email")}
                 />
                 <TextField
                   fullWidth
@@ -83,6 +93,15 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
                   sx={{ my: "10px" }}
                   type="number"
                   required
+                  {...register("number")}
+                />
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  variant="outlined"
+                  value={time}
+                  sx={{ my: "10px" }}
+                  {...register("time")}
                 />
                 <TextField
                   fullWidth
@@ -90,7 +109,7 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
                   variant="outlined"
                   sx={{ my: "10px" }}
                   value={date.toDateString()}
-                  disabled
+                  {...register("date")}
                 />
                 <GradientButton type="submit" sx={{ mt: "15px" }} fullWidth>
                   Booking

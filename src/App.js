@@ -8,6 +8,7 @@ import Contract from "./Doctors_Portal/Pages/Contract/Contract";
 import Dashboard from "./Doctors_Portal/Pages/Dashboard/Dashboard";
 import HomeContainer from "./Doctors_Portal/Pages/Home/HomeContainer/HomeContainer";
 import Login from "./Doctors_Portal/Pages/Login/Login";
+import MyAppointment from "./Doctors_Portal/Pages/My Appointment/MyAppointment";
 import NotFound from "./Doctors_Portal/Pages/NotFound/NotFound";
 import Preloader from "./Doctors_Portal/Pages/Preloader/Preloader";
 import SignUp from "./Doctors_Portal/Pages/SignUp/SignUp";
@@ -17,7 +18,7 @@ function App() {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("https://cryptic-retreat-15947.herokuapp.com/services")
+    fetch("http://localhost:5000/appointments")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -39,6 +40,10 @@ function App() {
 
             <PrivateRoute exact path="/appointment">
               <Appointment />
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/myAppointment">
+              <MyAppointment />
             </PrivateRoute>
 
             <Route exact path="/blogs">

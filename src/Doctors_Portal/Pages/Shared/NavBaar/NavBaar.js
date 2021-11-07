@@ -160,14 +160,19 @@ export default function NavBaar() {
                   Logout
                 </MenuItem>
               </Menu>
-              <Button variant="text">
+              <Button
+                variant="text"
+                sx={{
+                  marginLeft: "50px",
+                }}
+              >
                 <DashboardIcon sx={{ color: "#10D0E6" }} />
                 <Link
                   style={{
                     textDecoration: "none",
                     color: "#000",
                     fontWeight: "bold",
-                    marginLeft: "30px",
+                    marginLeft: "5px",
                   }}
                   to="/dashboard"
                 >
@@ -225,7 +230,18 @@ export default function NavBaar() {
               color: "#848B99",
             }}
           >
-            <ListItem button>Appointment</ListItem>
+            <ListItem button>Appointments</ListItem>
+          </NavLink>
+          <NavLink
+            onClick={() => handleDrawerClose()}
+            to="/myAppointment"
+            style={{
+              fontWeight: "bold",
+              textDecoration: "none",
+              color: "#848B99",
+            }}
+          >
+            <ListItem button>My Appointments</ListItem>
           </NavLink>
         </List>
       </Drawer>
