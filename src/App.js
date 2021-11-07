@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import AuthContext from "./Doctors_Portal/Context/AuthContext";
 import Appointment from "./Doctors_Portal/Pages/Appointment/Appointment";
 import Blogs from "./Doctors_Portal/Pages/Blogs/Blogs";
 import Contract from "./Doctors_Portal/Pages/Contract/Contract";
+import Dashboard from "./Doctors_Portal/Pages/Dashboard/Dashboard";
 import HomeContainer from "./Doctors_Portal/Pages/Home/HomeContainer/HomeContainer";
+import Login from "./Doctors_Portal/Pages/Login/Login";
 import NotFound from "./Doctors_Portal/Pages/NotFound/NotFound";
 import Preloader from "./Doctors_Portal/Pages/Preloader/Preloader";
-import Footer from "./Doctors_Portal/Pages/Shared/Footer/Footer";
-import NavBaar from "./Doctors_Portal/Pages/Shared/NavBaar/NavBaar";
+import SignUp from "./Doctors_Portal/Pages/SignUp/SignUp";
+import PrivateRoute from "./Doctors_Portal/PrivateRoute/PrivateRoute";
 
 function App() {
   const [services, setServices] = useState([]);
@@ -20,12 +23,11 @@ function App() {
   }, []);
 
   return (
-    <div className="">
+    <AuthContext className="">
       {services.length === 0 ? (
         <Preloader />
       ) : (
         <Router>
-          <NavBaar />
           <Switch>
             <Route exact path="/">
               <HomeContainer />
@@ -35,26 +37,37 @@ function App() {
               <HomeContainer />
             </Route>
 
-            <Route exact path="/appointment">
+            <PrivateRoute exact path="/appointment">
               <Appointment />
-            </Route>
+            </PrivateRoute>
 
             <Route exact path="/blogs">
               <Blogs />
             </Route>
 
-            <Route exact path="/contract">
+            <PrivateRoute exact path="/contract">
               <Contract />
+            </PrivateRoute>
+
+            <Route exact path="/login">
+              <Login />
             </Route>
+
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
 
             <Route exact path="*">
               <NotFound />
             </Route>
           </Switch>
-          <Footer />
         </Router>
       )}
-    </div>
+    </AuthContext>
   );
 }
 

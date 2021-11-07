@@ -28,7 +28,7 @@ const MakeAppointment = () => {
           justifyContent: "center",
         }}
       >
-        <Grid xs={6} md={6} lg={5}>
+        <Grid item xs={6} md={6} lg={5}>
           <img
             style={{
               position: "absolute",
@@ -40,7 +40,7 @@ const MakeAppointment = () => {
             alt=""
           />
         </Grid>
-        <Grid xs={6} md={6} lg={7} className="textAll">
+        <Grid item xs={6} md={6} lg={7} className="textAll">
           <Box>
             <Typography
               variant="body2"

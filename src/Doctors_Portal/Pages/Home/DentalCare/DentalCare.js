@@ -8,10 +8,10 @@ const DentalCare = () => {
     <Container sx={{ marginTop: "150px" }}>
       <Box>
         <Grid container spacing={2}>
-          <Grid xs={12} md={6} lg={6}>
+          <Grid item xs={12} md={6} lg={6}>
             <img width="90%" height="90%" src={treatment} alt="" />
           </Grid>
-          <Grid xs={12} md={6} lg={6}>
+          <Grid item xs={12} md={6} lg={6}>
             <Typography
               variant="h3"
               sx={{

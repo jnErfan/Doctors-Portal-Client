@@ -69,7 +69,7 @@ const Blogs = () => {
           </Paper>
         </Grid>
         {blogsSection.map(({ image, name, date, title, description }) => (
-          <Grid item xs={12} md={4} lg={4}>
+          <Grid item xs={12} md={4} lg={4} key={name}>
             <Paper
               sx={{
                 color: "#000",

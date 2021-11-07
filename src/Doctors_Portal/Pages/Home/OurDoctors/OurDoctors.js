@@ -26,7 +26,7 @@ const OurDoctors = () => {
 
         <Grid container spacing={3} sx={{ marginTop: "30px" }}>
           {doctors.map(({ image, name, number }) => (
-            <Grid item xs={12} md={4} lg={4}>
+            <Grid item xs={12} md={4} lg={4} key={number}>
               <Paper
                 sx={{
                   color: "#000",

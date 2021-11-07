@@ -11,9 +11,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
-import { NavLink } from "react-router-dom";
-import { AccountCircle, Logout } from "@mui/icons-material";
+import Button from "@mui/material/Button";
+import { Link, NavLink } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 import { Avatar, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import useAuth from "../../../Hooks/useAuth";
+import { GradientButton } from "../../Home/MUiStyled/GradientButton";
 
 const drawerWidth = 240;
 
@@ -80,7 +84,7 @@ export default function NavBaar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const { user, logOutAll } = useAuth();
   return (
     <Box position="absolute" sx={{ display: "flex" }}>
       <CssBaseline />
@@ -89,7 +93,6 @@ export default function NavBaar() {
         color="transparent"
         sx={{
           boxShadow: 0,
-          flexGrow: 1,
           display: "flex",
           justifyContent: "between",
         }}
@@ -105,56 +108,78 @@ export default function NavBaar() {
           >
             <MenuIcon sx={{ color: "#000" }} />
           </IconButton>
-          <Tooltip title="Your Profile" sx={{ justifyContent: "center" }}>
-            <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-              <AccountCircle sx={{ fontSize: 40, color: "#000" }} />
-            </IconButton>
-          </Tooltip>
+          {user?.email ? (
+            <>
+              <Tooltip title="Your Profile" sx={{ justifyContent: "center" }}>
+                <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+                  <Avatar alt="User" src={user.photoURL} />
+                </IconButton>
+              </Tooltip>
 
-          <Menu
-            anchorEl={anchorEl}
-            open={openn}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <MenuItem>
-              <Avatar /> J.N.Erfan
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Menu>
+              <Menu
+                anchorEl={anchorEl}
+                open={openn}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem>
+                  <Avatar alt="User" src={user.photoURL} /> {user.displayName}
+                </MenuItem>
+                <MenuItem onClick={logOutAll}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+              <Button variant="text">
+                <DashboardIcon sx={{ color: "#10D0E6" }} />
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#000",
+                    fontWeight: "bold",
+                    marginLeft: "30px",
+                  }}
+                  to="/dashboard"
+                >
+                  DASHBOARD
+                </Link>
+              </Button>
+            </>
+          ) : (
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <GradientButton sx={{ py: "10px" }}>Login</GradientButton>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer

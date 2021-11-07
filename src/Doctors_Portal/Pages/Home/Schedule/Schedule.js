@@ -25,6 +25,7 @@ const Schedule = () => {
             marginRight: "20px",
             my: "10px",
           }}
+          key={title}
         >
           <Box sx={{ display: "flex" }}>
             {" "}

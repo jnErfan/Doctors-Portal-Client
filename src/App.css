@@ -18,3 +18,15 @@
   background: linear-gradient(10deg, #10d0e6, #19d3b0);
   border-radius: 10px;
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+/* 
+User Login Information Saved Database
+Upsert User Login Information
+Nested Routing 
+Make Admin
+Admin Route 
+Jwt Verify Add Admin 
+*/
