@@ -18,7 +18,7 @@ function App() {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/appointments")
+    fetch("https://doctors-portal-backend-server.herokuapp.com/appointments")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

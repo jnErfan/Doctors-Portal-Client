@@ -8,6 +8,7 @@ import {
   updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -63,6 +64,16 @@ const useFirebase = () => {
         setError(error.message);
       })
       .finally(() => setIsLoading(false));
+  };
+  const resetPassword = (email) => {
+    setError("");
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setError("Password Reset Email Sended, Please Check Email");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
   const googleSignIn = (history, location) => {
     setError("");
@@ -122,6 +133,7 @@ const useFirebase = () => {
     googleSignIn,
     isLoading,
     logOutAll,
+    resetPassword,
   };
 };
 

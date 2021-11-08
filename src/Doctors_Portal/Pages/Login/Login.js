@@ -19,6 +19,9 @@ import useAuth from "../../Hooks/useAuth";
 import login from "../../Images/login.png";
 import { GradientButton } from "../Home/MUiStyled/GradientButton";
 import NavBaar from "../Shared/NavBaar/NavBaar";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 
 const Login = () => {
   const SocialIconButton = styled(Button)({
@@ -33,6 +36,17 @@ const Login = () => {
       color: "#fff",
     },
   });
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [values, setValues] = useState({
     amount: "",
     password: "",
@@ -55,18 +69,28 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const { error, emailPasswordLogin, googleSignIn } = useAuth();
+  const { error, emailPasswordLogin, googleSignIn, resetPassword } = useAuth();
+  const [email, setEmail] = useState("");
   const history = useHistory();
   const location = useLocation();
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     emailPasswordLogin(data.email, data.password, history, location);
-    console.log(data);
   };
   const handleGoogleSignIn = () => {
     googleSignIn(history, location);
   };
+
+  const handleBlur = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const resetPasswordHandler = () => {
+    resetPassword(email);
+    setOpen(false);
+  };
+
   return (
     <>
       <NavBaar />
@@ -143,9 +167,10 @@ const Login = () => {
                       {error}
                     </Typography>
                     <Button
+                      onClick={handleClickOpen}
                       variant="text"
                       sx={{
-                        color: "#EB6960",
+                        color: "purple",
                         mt: "15px",
                         fontSize: "12px",
                         fontWeight: "bold",
@@ -166,6 +191,29 @@ const Login = () => {
                           Sign Up
                         </Link>
                       </Button>
+                      <Box>
+                        <Dialog open={open} onClose={handleClose}>
+                          <form onSubmit={resetPasswordHandler}>
+                            {" "}
+                            <DialogContent>
+                              <TextField
+                                onBlur={handleBlur}
+                                autoFocus
+                                margin="dense"
+                                label="Account Email Address"
+                                type="email"
+                                fullWidth
+                                variant="standard"
+                                required
+                              />
+                            </DialogContent>
+                            <DialogActions>
+                              <Button onClick={handleClose}>Cancel</Button>
+                              <Button type="submit">Send Mail</Button>
+                            </DialogActions>
+                          </form>
+                        </Dialog>
+                      </Box>
                     </Box>
                     <Box sx={{ textAlign: "center" }}>
                       <SocialIconButton
