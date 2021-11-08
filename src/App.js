@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import AdminRoute from "./Doctors_Portal/AdminRoute/AdminRoute";
 import AuthContext from "./Doctors_Portal/Context/AuthContext";
+import AdminLogin from "./Doctors_Portal/Pages/AdminLogin/AdminLogin";
 import Appointment from "./Doctors_Portal/Pages/Appointment/Appointment";
-import Blogs from "./Doctors_Portal/Pages/Blogs/Blogs";
 import Contract from "./Doctors_Portal/Pages/Contract/Contract";
 import Dashboard from "./Doctors_Portal/Pages/Dashboard/Dashboard";
 import HomeContainer from "./Doctors_Portal/Pages/Home/HomeContainer/HomeContainer";
@@ -46,10 +47,6 @@ function App() {
               <MyAppointment />
             </PrivateRoute>
 
-            <Route exact path="/blogs">
-              <Blogs />
-            </Route>
-
             <PrivateRoute exact path="/contract">
               <Contract />
             </PrivateRoute>
@@ -62,9 +59,13 @@ function App() {
               <SignUp />
             </Route>
 
-            <PrivateRoute path="/dashboard">
+            <Route path="/adminLogin">
+              <AdminLogin />
+            </Route>
+
+            <AdminRoute path="/dashboard">
               <Dashboard />
-            </PrivateRoute>
+            </AdminRoute>
 
             <Route exact path="*">
               <NotFound />

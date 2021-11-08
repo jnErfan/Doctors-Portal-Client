@@ -7,8 +7,10 @@ import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import ListItem from "@mui/material/ListItem";
-import { Link, NavLink, useRouteMatch, Switch, Route } from "react-router-dom";
+import { Link, NavLink, useRouteMatch, Switch } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import AddModeratorSharpIcon from "@mui/icons-material/AddModeratorSharp";
+
 import {
   Avatar,
   Button,
@@ -31,6 +33,9 @@ import Patients from "../Patients/Patients";
 import Setting from "../Setting/Setting";
 import Prescriptions from "../Prescriptions/Prescriptions";
 import BookIcon from "@mui/icons-material/Book";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import MakeAdmin from "../MakeAdmin/MakeAdmin";
+import AdminRoute from "../../AdminRoute/AdminRoute";
 
 const drawerWidth = 150;
 
@@ -49,9 +54,12 @@ const Dashboard = () => {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
-        color="transparent"
         position="absolute"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, boxShadow: 0 }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          boxShadow: 0,
+          backgroundColor: "#19D3AE",
+        }}
       >
         <Toolbar>
           <Box
@@ -62,10 +70,10 @@ const Dashboard = () => {
               ml: "10%",
             }}
           >
-            <DashboardIcon sx={{ color: "#10D0E6" }} />
+            <DashboardIcon sx={{ color: "#1565C0" }} />
             <Typography
               variant="h6"
-              sx={{ fontWeight: "bold", ml: "15px", color: "#10D0E6" }}
+              sx={{ fontWeight: "bold", ml: "15px", color: "#fff" }}
             >
               ADMIN DASHBOARD
             </Typography>
@@ -80,7 +88,7 @@ const Dashboard = () => {
             <Button
               sx={{
                 fontWeight: "bold",
-                color: "#000",
+                color: "#fff",
                 fontSize: "18px",
                 mr: "20px",
               }}
@@ -90,8 +98,23 @@ const Dashboard = () => {
           </Link>
           <Tooltip title="Admin Profile" sx={{ justifyContent: "center" }}>
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-              <Typography sx={{ fontWeight: "bold", mr: "10px" }}>
-                ADMIN
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  mr: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <AdminPanelSettingsIcon />{" "}
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    ml: "5px",
+                  }}
+                >
+                  ADMIN
+                </Typography>
               </Typography>
               <Avatar sx={{ mr: "20px" }} alt="User" src={user.photoURL} />
             </IconButton>
@@ -196,6 +219,19 @@ const Dashboard = () => {
             </ListItem>
             <ListItem button>
               <NavLink
+                to={`${url}/makeAdmin`}
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  marginTop: "20px",
+                }}
+              >
+                <AddModeratorSharpIcon sx={{ display: "block" }} /> Make
+                Merchant
+              </NavLink>
+            </ListItem>
+            <ListItem button>
+              <NavLink
                 to={`${url}/setting`}
                 style={{
                   textDecoration: "none",
@@ -223,27 +259,30 @@ const Dashboard = () => {
       </Drawer>
       <Container>
         <Switch>
-          <Route exact path={path}>
+          <AdminRoute exact path={path}>
             <ManageAppointments />
-          </Route>
-          <Route path={`${path}/appointments`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/appointments`}>
             <ManageAppointments />
-          </Route>
-          <Route path={`${path}/blog`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/blog`}>
             <Blogs />
-          </Route>
-          <Route path={`${path}/patients`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/patients`}>
             <Patients />
-          </Route>
-          <Route path={`${path}/prescription`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/prescription`}>
             <Prescriptions />
-          </Route>
-          <Route path={`${path}/setting`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/makeAdmin`}>
+            <MakeAdmin />
+          </AdminRoute>
+          <AdminRoute path={`${path}/setting`}>
             <Setting />
-          </Route>
-          <Route path={`${path}/blogs`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/blogs`}>
             <Blogs />
-          </Route>
+          </AdminRoute>
         </Switch>
       </Container>
     </Box>

@@ -84,7 +84,8 @@ export default function NavBaar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const { user, logOutAll } = useAuth();
+  const { user, logOutAll, users } = useAuth();
+
   return (
     <Box position="absolute" sx={{ display: "flex" }}>
       <CssBaseline />
@@ -160,25 +161,29 @@ export default function NavBaar() {
                   Logout
                 </MenuItem>
               </Menu>
-              <Button
-                variant="text"
-                sx={{
-                  marginLeft: "50px",
-                }}
-              >
-                <DashboardIcon sx={{ color: "#10D0E6" }} />
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    color: "#000",
-                    fontWeight: "bold",
-                    marginLeft: "5px",
+              {users?.position === "merchant" || users?.position === "admin" ? (
+                <Button
+                  variant="text"
+                  sx={{
+                    marginLeft: "50px",
                   }}
-                  to="/dashboard"
                 >
-                  DASHBOARD
-                </Link>
-              </Button>
+                  <DashboardIcon sx={{ color: "#10D0E6" }} />
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      color: "#000",
+                      fontWeight: "bold",
+                      marginLeft: "5px",
+                    }}
+                    to="/dashboard"
+                  >
+                    DASHBOARD
+                  </Link>
+                </Button>
+              ) : (
+                <></>
+              )}
             </>
           ) : (
             <Link to="/login" style={{ textDecoration: "none" }}>
@@ -242,6 +247,17 @@ export default function NavBaar() {
             }}
           >
             <ListItem button>My Appointments</ListItem>
+          </NavLink>
+          <NavLink
+            onClick={() => handleDrawerClose()}
+            to="/dashboard"
+            style={{
+              fontWeight: "bold",
+              textDecoration: "none",
+              color: "#848B99",
+            }}
+          >
+            <ListItem button>Admin Dashboard</ListItem>
           </NavLink>
         </List>
       </Drawer>

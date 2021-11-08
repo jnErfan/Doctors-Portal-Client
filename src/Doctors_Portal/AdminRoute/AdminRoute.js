@@ -3,17 +3,17 @@ import { Redirect, Route } from "react-router";
 import useAuth from "../Hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
-  const { user } = useAuth();
+  const { users } = useAuth();
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        user?.email ? (
+        users?.position === "merchant" || users?.position === "admin" ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/adminLogin",
               state: { from: location },
             }}
           />

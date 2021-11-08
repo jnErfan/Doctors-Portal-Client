@@ -18,6 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [users, setUsers] = useState({});
   const auth = getAuth();
 
   const emailPasswordSignUp = (
@@ -84,7 +85,11 @@ const useFirebase = () => {
         savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         console.log(result?.user);
-        history.push(redirect);
+        if (location.pathname !== "/adminLogin") {
+          history.replace(redirect);
+        } else {
+          history.replace("/");
+        }
       })
       .catch((error) => {
         setError(error.message);
@@ -93,7 +98,7 @@ const useFirebase = () => {
   };
   const savedUserInfo = (name, email, method) => {
     const date = new Date();
-    const user = { name, email, date };
+    const user = { email, date, name };
     console.log(user);
     fetch("http://localhost:5000/user", {
       method: method,
@@ -124,6 +129,13 @@ const useFirebase = () => {
       setIsLoading(false);
     });
   }, [auth]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data[0]));
+  }, [user.email]);
+
   return {
     user,
     error,
@@ -134,6 +146,7 @@ const useFirebase = () => {
     isLoading,
     logOutAll,
     resetPassword,
+    users,
   };
 };
 
