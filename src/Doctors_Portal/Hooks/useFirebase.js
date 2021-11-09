@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
+  getIdToken,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -89,6 +90,7 @@ const useFirebase = () => {
           history.replace(redirect);
         } else {
           history.replace("/");
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -123,6 +125,9 @@ const useFirebase = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        getIdToken(user).then((idToken) =>
+          localStorage.setItem("idToken", idToken)
+        );
       } else {
         setUser("");
       }
@@ -131,7 +136,11 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`http://localhost:5000/users/${user.email}`, {
+      headers: {
+        "authorization": `Bearer ${localStorage.getItem("idToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setUsers(data[0]));
   }, [user.email]);

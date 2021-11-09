@@ -48,7 +48,7 @@ const Dashboard = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const { logOutAll, user } = useAuth();
+  const { logOutAll, user,users } = useAuth();
   let { path, url } = useRouteMatch();
   return (
     <Box sx={{ display: "flex" }}>
@@ -98,7 +98,7 @@ const Dashboard = () => {
           </Link>
           <Tooltip title="Admin Profile" sx={{ justifyContent: "center" }}>
             <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-              <Typography
+           { users.position === "admin" &&  <Typography
                 sx={{
                   fontWeight: "bold",
                   mr: "10px",
@@ -115,7 +115,25 @@ const Dashboard = () => {
                 >
                   ADMIN
                 </Typography>
-              </Typography>
+              </Typography>}
+           { users.position === "merchant" &&  <Typography
+                sx={{
+                  fontWeight: "bold",
+                  mr: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+               <AddModeratorSharpIcon />{" "}
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    ml: "5px",
+                  }}
+                >
+                  MERCHANT
+                </Typography>
+              </Typography>}
               <Avatar sx={{ mr: "20px" }} alt="User" src={user.photoURL} />
             </IconButton>
           </Tooltip>
@@ -217,7 +235,7 @@ const Dashboard = () => {
                 <ListAltIcon sx={{ display: "block" }} /> PRESCRIPTIONS
               </NavLink>
             </ListItem>
-            <ListItem button>
+            { users.position === "admin" && <ListItem button>
               <NavLink
                 to={`${url}/makeAdmin`}
                 style={{
@@ -229,7 +247,7 @@ const Dashboard = () => {
                 <AddModeratorSharpIcon sx={{ display: "block" }} /> Make
                 Merchant
               </NavLink>
-            </ListItem>
+            </ListItem>}
             <ListItem button>
               <NavLink
                 to={`${url}/setting`}
