@@ -8,7 +8,7 @@ const ManageAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [update, setUpdate] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/appointment?date=${date?.toDateString()}`)
+    fetch(`https://doctors-portal-backend-server.herokuapp.com/appointment?date=${date?.toDateString()}`)
       .then((res) => res.json())
       .then((data) => {
         setAppointments(data);

@@ -85,7 +85,6 @@ const useFirebase = () => {
         setUser(result?.user);
         savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
-        console.log(result?.user);
         if (location.pathname !== "/adminLogin") {
           history.replace(redirect);
         } else {
@@ -102,7 +101,7 @@ const useFirebase = () => {
     const date = new Date();
     const user = { email, date, name };
     console.log(user);
-    fetch("http://localhost:5000/user", {
+    fetch("https://doctors-portal-backend-server.herokuapp.com/user", {
       method: method,
       headers: {
         "content-type": "application/json",
@@ -136,13 +135,22 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`, {
+    setIsLoading(true);
+    let isUnMount = false;
+    fetch(`https://doctors-portal-backend-server.herokuapp.com/users/${user.email}`, {
       headers: {
         "authorization": `Bearer ${localStorage.getItem("idToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => setUsers(data[0]));
+      .then((data) => {
+      if(!isUnMount){
+        setUsers(data[0])
+        setIsLoading(false);
+      }
+      });
+
+      return () => isUnMount = true;
   }, [user.email]);
 
   return {

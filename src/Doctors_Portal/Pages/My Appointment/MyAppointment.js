@@ -12,7 +12,7 @@ const MyAppointment = () => {
   const [deleteAppointments, setDeleteAppointment] = useState("");
   const { user } = useAuth();
   useEffect(() => {
-    fetch(`http://localhost:5000/appointments/${user.email}`)
+    fetch(`https://doctors-portal-backend-server.herokuapp.com/appointments/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setAppointment(data);
@@ -24,7 +24,7 @@ const MyAppointment = () => {
     const confirm = window.confirm("Sure You Want To Cancel This");
     if (confirm === true) {
       axios
-        .delete(`http://localhost:5000/appointments/${id}`)
+        .delete(`https://doctors-portal-backend-server.herokuapp.com/appointments/${id}`)
         .then((result) => {
           if (result.data.deletedCount === 1) {
             alert("Cancel Successful");

@@ -5,17 +5,15 @@ import useAuth from "../Hooks/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
   const { users, isLoading } = useAuth();
-console.log(isLoading);
-console.log(users);
-if (isLoading) {
-  return (
-    <Stack sx={{ width: "100%", color: "grey.500", mt: "150px" }} spacing={2}>
-      <LinearProgress color="secondary" />
-      <LinearProgress color="success" />
-      <LinearProgress color="inherit" />
-    </Stack>
-  );
-};
+  if (isLoading) {
+    return (
+      <Stack sx={{ width: "100%", color: "grey.500", mt: "150px" }} spacing={2}>
+        <LinearProgress color="secondary" />
+        <LinearProgress color="success" />
+        <LinearProgress color="inherit" />
+      </Stack>
+    );
+  }
 
   return (
     <Route
@@ -26,7 +24,7 @@ if (isLoading) {
         ) : (
           <Redirect
             to={{
-              pathname: "/adminLogin",
+              pathname: "/adminLogin" ,
               state: { from: location },
             }}
           />

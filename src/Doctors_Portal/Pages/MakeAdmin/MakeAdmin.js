@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 const MakeAdmin = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    axios.put("http://localhost:5000/makeAdmin", data).then((result) => {
+    axios.put("https://doctors-portal-backend-server.herokuapp.com/makeAdmin", data).then((result) => {
       if (result.data.modifiedCount === 1) {
         reset();
         alert("Make User To Merchant Successful");

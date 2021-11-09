@@ -26,7 +26,7 @@ const ModalForm = ({ open, handleClose, name, time, date }) => {
   const { user } = useAuth();
   const onSubmit = (data) => {
     data.serviceName = name;
-    axios.post("http://localhost:5000/appointment", data).then((result) => {
+    axios.post("https://doctors-portal-backend-server.herokuapp.com/appointment", data).then((result) => {
       console.log(result);
       if (result.data.insertedId) {
         alert("Successful");

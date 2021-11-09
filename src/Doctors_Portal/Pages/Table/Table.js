@@ -12,7 +12,7 @@ import axios from "axios";
 const TableComponent = ({ appointments }) => {
   const statusHandler = (id) => {
     const status = { status: "Visited" };
-    axios.put(`http://localhost:5000/appointments/${id}`, status);
+    axios.put(`https://doctors-portal-backend-server.herokuapp.com/appointments/${id}`, status);
   };
 
   return (
