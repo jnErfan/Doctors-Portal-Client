@@ -36,6 +36,7 @@ import BookIcon from "@mui/icons-material/Book";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import AdminRoute from "../../AdminRoute/AdminRoute";
+import AddDoctors from "../AddDoctors/AddDoctors";
 
 const drawerWidth = 150;
 
@@ -213,6 +214,31 @@ const Dashboard = () => {
             </ListItem>
             <ListItem button>
               <NavLink
+                to={`${url}/addDoctors`}
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  marginTop: "20px",
+                }}
+              >
+                <PregnantWomanIcon sx={{ display: "block" }} /> Add Doctors
+              </NavLink>
+            </ListItem>
+            { users.position === "admin" && <ListItem button>
+              <NavLink
+                to={`${url}/makeAdmin`}
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  marginTop: "20px",
+                }}
+              >
+                <AddModeratorSharpIcon sx={{ display: "block" }} /> Make
+                Merchant
+              </NavLink>
+            </ListItem>}
+            <ListItem button>
+              <NavLink
                 to={`${url}/patients`}
                 style={{
                   textDecoration: "none",
@@ -235,19 +261,7 @@ const Dashboard = () => {
                 <ListAltIcon sx={{ display: "block" }} /> PRESCRIPTIONS
               </NavLink>
             </ListItem>
-            { users.position === "admin" && <ListItem button>
-              <NavLink
-                to={`${url}/makeAdmin`}
-                style={{
-                  textDecoration: "none",
-                  color: "#fff",
-                  marginTop: "20px",
-                }}
-              >
-                <AddModeratorSharpIcon sx={{ display: "block" }} /> Make
-                Merchant
-              </NavLink>
-            </ListItem>}
+           
             <ListItem button>
               <NavLink
                 to={`${url}/setting`}
@@ -291,6 +305,9 @@ const Dashboard = () => {
           </AdminRoute>
           <AdminRoute path={`${path}/prescription`}>
             <Prescriptions />
+          </AdminRoute>
+          <AdminRoute path={`${path}/addDoctors`}>
+            <AddDoctors />
           </AdminRoute>
           <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin />

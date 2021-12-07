@@ -223,48 +223,12 @@ const AdminLogin = () => {
           </Container>
         </form>
       </Container>
-      {/*  <Box>
-        <Box>
-         
-
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              type="email"
-              placeholder="Email"
-              {...register("email")}
-              required
-            />
-            <TextField
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-              required
-            />
-            <p className="">
-              <small>{"error"}</small>
-            </p>
-            <input
-              style={{ backgroundColor: "orangered" }}
-              type="submit"
-              value="Login"
-            />
-            <div>
-              <p>__________ Or __________</p>
-            </div>
-          </form>
-          <div>
-            <button>
-              <span>
-                <img
-                  src="https://img.icons8.com/fluency/48/000000/google-logo.png"
-                  alt=""
-                />
-              </span>
-              <span> Google Admin SignIn</span>
-            </button>
-          </div>
-        </Box>
-      </Box> */}
+     <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "50px"}}>
+     <div style={{ textAlign: "center", boxShadow: "1px 1px 5px gray", display: "inline-block", padding:"10px", borderRadius:"20px"}}>
+     <p>admin@gmail.com</p>
+     <p>asdf1234</p>
+     </div>
+     </div>
     </Box>
   );
 };
